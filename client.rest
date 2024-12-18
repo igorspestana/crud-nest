@@ -21,3 +21,14 @@ GET {{baseUrl}}/notes/note/1
 
 # @name NotesControllerFindOneAlt
 GET {{baseUrl}}/notes/notealt/1
+
+### NotesControllerCreate
+
+# @name NotesControllerCreate
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+    "id": 1,
+    "note": "This is a note"
+}

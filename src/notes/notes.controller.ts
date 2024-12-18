@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('notes')
 export class NotesController {
@@ -17,5 +17,10 @@ export class NotesController {
   findOneAlt(@Param('id') id: string) {
     console.log(id);
     return `This route returns a note with id ${id}`;
+  }
+
+  @Post()
+  create(@Body() body: any) {
+    return body;
   }
 }
