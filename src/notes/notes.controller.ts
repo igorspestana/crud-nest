@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -35,11 +36,16 @@ export class NotesController {
     return body;
   }
 
-  @Patch('noteupdate/:id')
+  @Patch('note/:id')
   update(@Param('id') id: string, @Body() body: any) {
     return {
       id,
       ...body,
     };
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `This route remove the note ${id}`;
   }
 }
