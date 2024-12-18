@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
 
 @Controller('notes')
 export class NotesController {
+  @HttpCode(HttpStatus.OK)
   @Get()
   findAll() {
     return 'This route returns all notes';
@@ -19,6 +28,7 @@ export class NotesController {
     return `This route returns a note with id ${id}`;
   }
 
+  @HttpCode(201)
   @Post()
   create(@Body() body: any) {
     return body;
