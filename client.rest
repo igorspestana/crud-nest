@@ -12,6 +12,11 @@ GET {{baseUrl}}/
 # @name NotesControllerFindAll
 GET {{baseUrl}}/notes
 
+### List all notes with query params
+
+# @name NotesControllerFindAllWithQueryParams
+GET {{baseUrl}}/notes/queryparams/?limite=23&offset=7
+
 ### List a specific note by ID
 
 # @name NotesControllerFindOne

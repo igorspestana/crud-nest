@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 
 @Controller('notes')
@@ -16,6 +17,11 @@ export class NotesController {
   @Get()
   findAll() {
     return 'This route returns all notes';
+  }
+
+  @Get('queryparams')
+  findAllWithQueryParams(@Query() queryParams: any) {
+    return `This route returns all notes. Limite: ${queryParams.limite}. Offset: ${queryParams.offset}`;
   }
 
   @Get('note/:id')
