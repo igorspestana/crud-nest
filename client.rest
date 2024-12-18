@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000
+
+### AppControllerGetHello
+
+# @name AppControllerGetHello
+GET {{baseUrl}}/
+
+# Notes
+
+### NotesControllerFindAll
+
+# @name NotesControllerFindAll
+GET {{baseUrl}}/notes
+
+### NotesControllerFindOne
+
+# @name NotesControllerFindOne
+GET {{baseUrl}}/notes/note/1
+
+### NotesControllerFindOneAlt
+
+# @name NotesControllerFindOneAlt
+GET {{baseUrl}}/notes/notealt/1
