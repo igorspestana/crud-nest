@@ -32,3 +32,14 @@ Content-Type: application/json
     "id": 1,
     "note": "This is a note"
 }
+
+### NotesControllerUpdate
+
+# @name NotesControllerUpdate
+PATCH {{baseUrl}}/notes/noteupdate/1
+Content-Type: application/json
+
+{
+    "note": "This is a note3",
+    "update": true
+}

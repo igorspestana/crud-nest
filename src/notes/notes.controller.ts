@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 
@@ -32,5 +33,13 @@ export class NotesController {
   @Post()
   create(@Body() body: any) {
     return body;
+  }
+
+  @Patch('noteupdate/:id')
+  update(@Param('id') id: string, @Body() body: any) {
+    return {
+      id,
+      ...body,
+    };
   }
 }
