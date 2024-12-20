@@ -10,10 +10,18 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { NotesService } from './notes.service';
 
 @Controller('notes')
 export class NotesController {
+  constructor(private readonly notesService: NotesService) {}
+
   @HttpCode(HttpStatus.OK)
+  @Get('hello')
+  hello() {
+    return this.notesService.hello();
+  }
+
   @Get()
   findAll() {
     return 'This route returns all notes';

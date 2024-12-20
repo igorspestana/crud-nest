@@ -5,6 +5,11 @@
 # @name AppControllerGetHello
 GET {{baseUrl}}/
 
+### AppControllerGetHelloNotes
+
+# @name AppControllerGetHelloNotes
+GET {{baseUrl}}/notes/hello
+
 # Notes
 
 ### List all notes
