@@ -1,60 +1,51 @@
 @baseUrl = http://localhost:3000
 
 ### AppControllerGetHello
-
 # @name AppControllerGetHello
 GET {{baseUrl}}/
-
-### AppControllerGetHelloNotes
-
-# @name AppControllerGetHelloNotes
-GET {{baseUrl}}/notes/hello
 
 # Notes
 
 ### List all notes
-
 # @name NotesControllerFindAll
 GET {{baseUrl}}/notes
 
 ### List all notes with query params
-
 # @name NotesControllerFindAllWithQueryParams
 GET {{baseUrl}}/notes/queryparams/?limite=23&offset=7
 
 ### List a specific note by ID
-
 # @name NotesControllerFindOne
-GET {{baseUrl}}/notes/note/1
+GET {{baseUrl}}/notes/note/7
 
 ### List a specific note by ID
-
 # @name NotesControllerFindOneAlt
-GET {{baseUrl}}/notes/notealt/1
+GET {{baseUrl}}/notes/notealt/7
 
 ### Create a note
-
 # @name NotesControllerCreate
 POST {{baseUrl}}/notes
 Content-Type: application/json
 
 {
-    "id": 1,
-    "note": "This is a note"
+    "text": "This is a new note 3",
+    "from": "me",
+    "to": "you",
+    "read": false
 }
 
 ### Update a note
-
 # @name NotesControllerUpdate
-PATCH {{baseUrl}}/notes/note/1
+PATCH {{baseUrl}}/notes/note/3
 Content-Type: application/json
 
 {
-    "note": "This is a note3",
-    "update": true
+    "text": "This is a new note",
+    "from": "me",
+    "to": "you",
+    "read": false
 }
 
 ### Remove a specific note by ID
-
 # @name NotesControllerRemove
-DELETE {{baseUrl}}/notes/1
+DELETE {{baseUrl}}/notes/3

@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   HttpCode,
-  HttpStatus,
   Param,
   Patch,
   Post,
@@ -16,15 +15,9 @@ import { NotesService } from './notes.service';
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
-  @HttpCode(HttpStatus.OK)
-  @Get('hello')
-  hello() {
-    return this.notesService.hello();
-  }
-
   @Get()
   findAll() {
-    return 'This route returns all notes';
+    return this.notesService.findAll();
   }
 
   @Get('queryparams')
@@ -35,31 +28,28 @@ export class NotesController {
   @Get('note/:id')
   findOne(@Param() params: any) {
     console.log(params);
-    return `This route returns a note with id ${params.id}`;
+    return this.notesService.findOne(params.id);
   }
 
   @Get('notealt/:id')
   findOneAlt(@Param('id') id: string) {
     console.log(id);
-    return `This route returns a note with id ${id}`;
+    return this.notesService.findOne(id);
   }
 
   @HttpCode(201)
   @Post()
   create(@Body() body: any) {
-    return body;
+    return this.notesService.create(body);
   }
 
   @Patch('note/:id')
   update(@Param('id') id: string, @Body() body: any) {
-    return {
-      id,
-      ...body,
-    };
+    return this.notesService.update(id, body);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `This route remove the note ${id}`;
+    return this.notesService.remove(id);
   }
 }
