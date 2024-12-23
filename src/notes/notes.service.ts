@@ -1,3 +1,4 @@
+import { UpdateNoteDto } from './dto/update-note.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Note } from './entities/note.entity';
 import { CreateNoteDto } from './dto/create-note.dto';
@@ -44,14 +45,14 @@ export class NotesService {
     return newNote;
   }
 
-  update(id: string, createNoteDto: CreateNoteDto) {
+  update(id: string, updateNoteDto: UpdateNoteDto) {
     const noteIndex = this.notes.findIndex((note) => note.id === +id);
 
     if (noteIndex < 0) {
       throw new NotFoundException('Note not found.');
     }
 
-    this.notes[noteIndex] = { ...this.notes[noteIndex], ...createNoteDto };
+    this.notes[noteIndex] = { ...this.notes[noteIndex], ...updateNoteDto };
     return this.notes[noteIndex];
   }
 
