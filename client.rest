@@ -30,8 +30,7 @@ Content-Type: application/json
 {
     "text": "This is a new note 3",
     "from": "me",
-    "to": "you",
-    "read": false
+    "to": "you"
 }
 
 ### Update a note
@@ -42,8 +41,7 @@ Content-Type: application/json
 {
     "text": "This is a new note",
     "from": "me",
-    "to": "you",
-    "read": false
+    "to": "you"
 }
 
 ### Remove a specific note by ID

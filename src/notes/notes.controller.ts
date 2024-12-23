@@ -10,6 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { NotesService } from './notes.service';
+import { CreateNoteDto } from './dto/create-note.dto';
 
 @Controller('notes')
 export class NotesController {
@@ -39,13 +40,13 @@ export class NotesController {
 
   @HttpCode(201)
   @Post()
-  create(@Body() body: any) {
-    return this.notesService.create(body);
+  create(@Body() createNoteDto: CreateNoteDto) {
+    return this.notesService.create(createNoteDto);
   }
 
   @Patch('note/:id')
-  update(@Param('id') id: string, @Body() body: any) {
-    return this.notesService.update(id, body);
+  update(@Param('id') id: string, @Body() createNoteDto: CreateNoteDto) {
+    return this.notesService.update(id, createNoteDto);
   }
 
   @Delete(':id')
