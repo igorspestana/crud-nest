@@ -16,11 +16,11 @@ GET {{baseUrl}}/notes/queryparams/?limite=23&offset=7
 
 ### List a specific note by ID
 # @name NotesControllerFindOne
-GET {{baseUrl}}/notes/note/7
+GET {{baseUrl}}/notes/note/2
 
 ### List a specific note by ID
 # @name NotesControllerFindOneAlt
-GET {{baseUrl}}/notes/notealt/7
+GET {{baseUrl}}/notes/notealt/1
 
 ### Create a note
 # @name NotesControllerCreate

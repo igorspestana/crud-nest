@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -34,7 +35,7 @@ export class NotesController {
   }
 
   @Get('notealt/:id')
-  findOneAlt(@Param('id') id: string) {
+  findOneAlt(@Param('id', ParseIntPipe) id: number) {
     console.log(id);
     return this.notesService.findOne(id);
   }
@@ -46,12 +47,15 @@ export class NotesController {
   }
 
   @Patch('note/:id')
-  update(@Param('id') id: string, @Body() updateNoteDto: UpdateNoteDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateNoteDto: UpdateNoteDto,
+  ) {
     return this.notesService.update(id, updateNoteDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.notesService.remove(id);
   }
 }

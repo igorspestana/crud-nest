@@ -21,8 +21,8 @@ export class NotesService {
     return this.notes;
   }
 
-  findOne(id: string): Note {
-    const note = this.notes.find((note) => note.id === +id);
+  findOne(id: number): Note {
+    const note = this.notes.find((note) => note.id === id);
 
     if (note) {
       return note;
@@ -45,8 +45,8 @@ export class NotesService {
     return newNote;
   }
 
-  update(id: string, updateNoteDto: UpdateNoteDto) {
-    const noteIndex = this.notes.findIndex((note) => note.id === +id);
+  update(id: number, updateNoteDto: UpdateNoteDto) {
+    const noteIndex = this.notes.findIndex((note) => note.id === id);
 
     if (noteIndex < 0) {
       throw new NotFoundException('Note not found.');
@@ -56,8 +56,8 @@ export class NotesService {
     return this.notes[noteIndex];
   }
 
-  remove(id: string) {
-    const noteIndex = this.notes.findIndex((note) => note.id === +id);
+  remove(id: number) {
+    const noteIndex = this.notes.findIndex((note) => note.id === id);
 
     if (noteIndex < 0) {
       throw new NotFoundException('Note not found.');
