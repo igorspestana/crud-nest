@@ -27,6 +27,7 @@ GET {{baseUrl}}/notes/notealt/7
 POST {{baseUrl}}/notes
 Content-Type: application/json
 
+
 {
     "text": "This is a new note 3",
     "from": "me",
@@ -39,9 +40,7 @@ PATCH {{baseUrl}}/notes/note/3
 Content-Type: application/json
 
 {
-    "text": "This is a new note",
-    "from": "me",
-    "to": "you"
+    "read": true
 }
 
 ### Remove a specific note by ID
