@@ -2,9 +2,17 @@ import { UpdateNoteDto } from './dto/update-note.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Note } from './entities/note.entity';
 import { CreateNoteDto } from './dto/create-note.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class NotesService {
+  // Para ter acesso ao repositório
+  constructor(
+    @InjectRepository(Note)
+    private readonly noteRepository: Repository<Note>,
+  ) {}
+
   private lastId = 1;
   private notes: Note[] = [
     {
@@ -17,12 +25,17 @@ export class NotesService {
     },
   ];
 
-  findAll(): Note[] {
-    return this.notes;
+  async findAll() {
+    const notes = await this.noteRepository.find();
+    return notes;
   }
 
-  findOne(id: number): Note {
-    const note = this.notes.find((note) => note.id === id);
+  async findOne(id: number) {
+    const note = await this.noteRepository.findOne({
+      where: {
+        id,
+      },
+    });
 
     if (note) {
       return note;
@@ -32,17 +45,15 @@ export class NotesService {
     throw new NotFoundException('Note not found.');
   }
 
-  create(createNoteDto: CreateNoteDto) {
-    this.lastId++;
-    const id = this.lastId;
+  async create(createNoteDto: CreateNoteDto) {
     const newNote = {
-      id,
       ...createNoteDto,
       read: false,
       createdAt: new Date(),
     };
-    this.notes.push(newNote);
-    return newNote;
+
+    const createdNote = await this.noteRepository.create(newNote);
+    return this.noteRepository.save(createdNote);
   }
 
   update(id: number, updateNoteDto: UpdateNoteDto) {
@@ -56,16 +67,17 @@ export class NotesService {
     return this.notes[noteIndex];
   }
 
-  remove(id: number) {
-    const noteIndex = this.notes.findIndex((note) => note.id === id);
+  async remove(id: number) {
+    const removedNote = await this.noteRepository.findOne({
+      where: {
+        id,
+      },
+    });
 
-    if (noteIndex < 0) {
+    if (!removedNote) {
       throw new NotFoundException('Note not found.');
     }
 
-    const removedNote = this.notes[noteIndex];
-
-    this.notes.splice(noteIndex, 1);
-    return removedNote;
+    return this.noteRepository.remove(removedNote);
   }
 }

@@ -4,6 +4,7 @@
 # @name AppControllerGetHello
 GET {{baseUrl}}/
 
+# -----------------------------------------------------------------------
 # Notes
 
 ### List all notes
@@ -16,23 +17,26 @@ GET {{baseUrl}}/notes/queryparams/?limite=23&offset=7
 
 ### List a specific note by ID
 # @name NotesControllerFindOne
-GET {{baseUrl}}/notes/note/2
+GET {{baseUrl}}/notes/note/1
 
 ### List a specific note by ID
 # @name NotesControllerFindOneAlt
 GET {{baseUrl}}/notes/notealt/1
+
+
 
 ### Create a note
 # @name NotesControllerCreate
 POST {{baseUrl}}/notes
 Content-Type: application/json
 
-
 {
-    "text": "This is a new note 3",
+    "text": "This is a new note 5",
     "from": "me",
     "to": "you"
 }
+
+
 
 ### Update a note
 # @name NotesControllerUpdate
@@ -42,6 +46,8 @@ Content-Type: application/json
 {
     "read": true
 }
+
+
 
 ### Remove a specific note by ID
 # @name NotesControllerRemove
