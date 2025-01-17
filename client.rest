@@ -40,15 +40,16 @@ Content-Type: application/json
 
 ### Update a note
 # @name NotesControllerUpdate
-PATCH {{baseUrl}}/notes/note/3
+PATCH {{baseUrl}}/notes/note/1
 Content-Type: application/json
 
 {
-    "read": true
+    "read": true,
+    "text": "teste 23"
 }
 
 
 
 ### Remove a specific note by ID
 # @name NotesControllerRemove
-DELETE {{baseUrl}}/notes/3
+DELETE {{baseUrl}}/notes/6

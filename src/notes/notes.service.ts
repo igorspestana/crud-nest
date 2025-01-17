@@ -13,18 +13,6 @@ export class NotesService {
     private readonly noteRepository: Repository<Note>,
   ) {}
 
-  private lastId = 1;
-  private notes: Note[] = [
-    {
-      id: this.lastId,
-      text: 'This is a note',
-      from: 'me',
-      to: 'you',
-      read: false,
-      createdAt: new Date(),
-    },
-  ];
-
   async findAll() {
     const notes = await this.noteRepository.find();
     return notes;
@@ -56,15 +44,24 @@ export class NotesService {
     return this.noteRepository.save(createdNote);
   }
 
-  update(id: number, updateNoteDto: UpdateNoteDto) {
-    const noteIndex = this.notes.findIndex((note) => note.id === id);
+  async update(id: number, updateNoteDto: UpdateNoteDto) {
+    const partialUpdateNoteDto = {
+      read: updateNoteDto?.read,
+      text: updateNoteDto?.text,
+    };
 
-    if (noteIndex < 0) {
+    const updatedNote = await this.noteRepository.preload({
+      id,
+      ...partialUpdateNoteDto,
+    });
+
+    if (!updatedNote) {
       throw new NotFoundException('Note not found.');
     }
 
-    this.notes[noteIndex] = { ...this.notes[noteIndex], ...updateNoteDto };
-    return this.notes[noteIndex];
+    await this.noteRepository.save(updatedNote);
+
+    return updatedNote;
   }
 
   async remove(id: number) {
@@ -78,6 +75,8 @@ export class NotesService {
       throw new NotFoundException('Note not found.');
     }
 
-    return this.noteRepository.remove(removedNote);
+    await this.noteRepository.remove(removedNote);
+
+    return removedNote;
   }
 }
